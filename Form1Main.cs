@@ -22,6 +22,7 @@ namespace SerialportCom1
             comboBoxIport.Items.AddRange(ports);
         }
         */
+        string dataOUT;
 
         string receicedConfig = "C38IT001;0.0;500.O;40;440";
         string[] insturmentConfigs;
@@ -216,7 +217,7 @@ namespace SerialportCom1
                 string avilableDate = "";
                 avilableDate += serialPort1.ReadExisting().ToString();
                 string[] analogReadings = avilableDate.Split(';');
-
+                /*
                 TextBoxtFile.AppendText(avilableDate);
                 if (analogReadings.Length == 3)
                 {
@@ -227,6 +228,7 @@ namespace SerialportCom1
                     chart1.Series[2].Points.AddXY(measuredPoin.Time, measuredPoint.Vab);
                     allMeasuredPoints.Add(measurmentPoint);
                 }
+                */
 
                 timerChartAdd.Enabled = true;
                 timerSerialReceicve.Enabled = false;
@@ -338,6 +340,47 @@ namespace SerialportCom1
         private class textBoxesURV
         {
             public static string Text { get; internal set; }
+        }
+
+        private void progressBar1_Click(object sender, EventArgs e)
+        {
+            if(serialPort1.IsOpen)
+            {
+                dataOUT = textBoxRececive.Text;
+                serialPort1.WriteLine(dataOUT);
+            }
+        }
+        /*
+        private void textBox5_TextChanged(object sender, EventArgs e)
+        {
+            
+            string writeString;
+            string passwordString = "password1234";
+            writeString="writeconf>" + passwordString + ">" + string.Join(";", insturmentconfig);
+            textBoxResult.Clear();
+            textBoxResult.Text = writeString;
+           
+        }
+        
+        */
+
+        private void buttonLogin_Click(object sender, EventArgs e)
+        {
+
+            textBoxResult2.Clear();
+            if(openFileDialog1.ShowDialog()==DialogResult.OK)
+            {
+
+              /*  foreach(string Line in File.ReadLines(openFileDialog1.FileNames))*/
+                    
+                      /*(  textBoxResult2.AppendText(Line)*/
+            }
+           
+        }
+
+        private void serialPort1_Load_1(object sender, EventArgs e)
+        {
+
         }
     }
 
